@@ -1,23 +1,33 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FaPaw, FaUserPlus } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
 
 const NavBar = () => {
+  const pathname = usePathname();
   const link = (
     <>
       <li>
-        <Link href="/" className="hover:text-[#D68B6E] hover:font-bold">
+        <Link
+          href="/"
+          className={`hover:text-[#D68B6E] hover:font-bold ${pathname === "/" && "text-[#D68B6E]"}`}
+        >
           Home
         </Link>
       </li>
       <li>
-        <Link href="/allpets" className="hover:text-[#D68B6E] hover:font-bold">
+        <Link
+          href="/allpets"
+          className={`hover:text-[#D68B6E] hover:font-bold ${pathname === "/allpets" && "text-[#D68B6E]"}`}
+        >
           All pets
         </Link>
       </li>
     </>
   );
+
   return (
     <div className="navbar shadow-sm container mx-auto mt-1 text-white bg-[#064E3B] rounded-t-2xl px-5">
       <div className="navbar-start">
@@ -41,11 +51,12 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box z-1 mt-3 w-52 p-2 shadow "
           >
             {link}
           </ul>
         </div>
+
         <FaPaw className="text-4xl text-[#D68B6E]" />
         <a className="btn btn-ghost font-bold text-xl text-[#D68B6E]">
           PetAdopt
@@ -73,8 +84,8 @@ const NavBar = () => {
           Login
         </Link>
         <Link
-          href="/"
-          className="px-5 py-2 flex items-center gap-2
+          href="/register"
+          className="hidden md:flex px-5 py-2 flex items-center gap-2
                 rounded-full
                 border-2 border-[#D68B6E]
                 text-[#D68B6E]
@@ -84,8 +95,7 @@ const NavBar = () => {
                 transition-all
                 duration-300
                 shadow-[0_0_15px_rgba(214,139,110,0.4)]
-                hover:scale-105
-    "
+                hover:scale-105"
         >
           <FaUserPlus />
           Get started
