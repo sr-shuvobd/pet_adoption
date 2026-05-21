@@ -56,11 +56,12 @@ const NavBar = () => {
             {link}
           </ul>
         </div>
-
+        <div className="flex justify-center items-center gap-3">
         <FaPaw className="text-4xl text-[#D68B6E]" />
-        <a className="btn btn-ghost font-bold text-xl text-[#D68B6E]">
+        <Link href="/" className="font-bold text-2xl text-[#D68B6E]">
           PetAdopt
-        </a>
+        </Link>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu  menu-horizontal px-1">{link}</ul>

@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#064E3B] text-white mt-10 container mx-auto rounded-b-2xl">
+    <footer className="bg-[#064E3B] text-white container mx-auto rounded-b-2xl">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         
         <div>
@@ -36,21 +36,21 @@ const Footer = () => {
             </Link>
 
             <Link
-              href="/all-pets"
+              href="/allpets"
               className="hover:text-[#D68B6E] duration-300"
             >
               All Pets
             </Link>
 
             <Link
-              href="/dashboard/add-pet"
+              href="/"
               className="hover:text-[#D68B6E] duration-300"
             >
               Add Pet
             </Link>
 
             <Link
-              href="/dashboard/my-requests"
+              href="/"
               className="hover:text-[#D68B6E] duration-300"
             >
               My Requests
