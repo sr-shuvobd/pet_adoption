@@ -22,7 +22,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="container mx-auto bg-[#FFF1EB] flex flex-col justify-center items-center p-20">
+    <div className="container mx-auto bg-[#FFF1EB] flex flex-col justify-center items-center h-screen">
       <Form
         className="flex w-96 flex-col gap-4 bg-gray-100 p-5 rounded-2xl"
         onSubmit={onSubmit}
