@@ -4,11 +4,10 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
 const client = new MongoClient(process.env.MONGO_URI);
 
-await client.connect();
-
 const db = client.db("petadopt");
 
 export const auth = betterAuth({
+
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 6,
@@ -18,4 +17,10 @@ export const auth = betterAuth({
     // Optional: if you don't provide a client, database transactions won't be enabled.
     client,
   }),
+  socialProviders: {
+        google: { 
+            clientId: process.env.GOOGLE_CLIENT_ID, 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
+        }, 
+    },
 });

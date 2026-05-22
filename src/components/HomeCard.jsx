@@ -4,9 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const HomeCard = async () => {
-  const res = await fetch("http://localhost:5000/allpet", {
-    cache: "no-store",
-  });
+  const res = await fetch("http://localhost:5000/allpet");
 
   const pets = await res.json();
 

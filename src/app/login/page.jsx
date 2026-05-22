@@ -22,10 +22,14 @@ const LoginPage = () => {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
     const { email, password } = data;
+    
     const { data: res, error } = await authClient.signIn.email({
       email: email,
       password: password,
     });
+
+    console.log({res,error})
+
     if (res) {
       toast.success("Login successfully.");
       router.push("/");
@@ -37,11 +41,12 @@ const LoginPage = () => {
 
   return (
     <div className="container mx-auto bg-[#FFF1EB] flex flex-col justify-center items-center h-screen">
+      <div className=" flex  flex-col  bg-gray-100 p-5 rounded-2xl gap-4 text-center">
       <Form
-        className="flex w-96 flex-col gap-4 bg-gray-100 p-5 rounded-2xl"
+        className="space-y-2"
         onSubmit={onSubmit}
       >
-        <h1 className="text-3xl font-bold text-[#D68B6E]">
+        <h1 className="text-3xl mb-5 font-bold text-[#D68B6E]">
           Login Your Account
         </h1>
         <TextField
@@ -103,7 +108,10 @@ const LoginPage = () => {
             <Check />
             Login
           </Button>
-          <button
+          
+        </div>
+      </Form>
+      <button
             className="btn px-5 py-2 flex items-center gap-2
                 rounded
                 border-2 border-[#D68B6E]
@@ -144,15 +152,14 @@ const LoginPage = () => {
               </g>
             </svg>
             Login with Google
-          </button>
-          <p className="">
+      </button>
+      <p className="">
             Don’t have an account yet?{" "}
             <Link href="/register" className="text-red-500">
               Sign Up now.
             </Link>
           </p>
-        </div>
-      </Form>
+          </div>
     </div>
   );
 };

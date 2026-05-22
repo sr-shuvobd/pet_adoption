@@ -4,9 +4,7 @@ import React from 'react';
 const DetailsPage = async({params}) => {
   const {id} = await params;
 
-    const res = await fetch(`http://localhost:5000/allpet/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`http://localhost:5000/allpet/${id}`);
     const pet = await res.json();
     const { _id, imageUrl, petName, species, age, adoptionFee,healthStatus,vaccinationStatus,location,description, breed,gender} = pet;
     return (
