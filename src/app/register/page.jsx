@@ -44,9 +44,16 @@ const Register = () => {
     }
   };
 
+  const googleSignIn = async() => {
+      const data = await authClient.signIn.social({
+        provider: "google",
+      });
+  }
+
   return (
     <div className="container mx-auto bg-[#FFF1EB] flex flex-col justify-center items-center h-screen ">
       <div className="bg-gray-100 p-5 flex flex-col gap-4 rounded-2xl">
+        
         <Form className="space-y-3" onSubmit={onSubmit}>
           <h1 className="text-3xl font-bold text-[#D68B6E]">
             Create Your Account
@@ -129,7 +136,8 @@ const Register = () => {
             </Button>
           </div>
         </Form>
-        <button
+
+        <button onClick={googleSignIn}
           className="btn w-full px-5 py-2 mt-3 flex items-center gap-2
                 rounded
                 border-2 border-[#D68B6E]
