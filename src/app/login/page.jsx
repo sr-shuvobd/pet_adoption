@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -10,15 +11,28 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
-
-  const onSubmit = async(e) => {
+  const router = useRouter();
+  
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries())
-
-    console.log(data)
+    const data = Object.fromEntries(formData.entries());
+    const { email, password } = data;
+    const { data: res, error } = await authClient.signIn.email({
+      email: email,
+      password: password,
+    });
+    if (res) {
+      toast.success("Login successfully.");
+      router.push("/");
+    }
+    if (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -89,7 +103,8 @@ const LoginPage = () => {
             <Check />
             Login
           </Button>
-          <button className="btn px-5 py-2 flex items-center gap-2
+          <button
+            className="btn px-5 py-2 flex items-center gap-2
                 rounded
                 border-2 border-[#D68B6E]
                 text-[#D68B6E]
@@ -99,7 +114,8 @@ const LoginPage = () => {
                 transition-all
                 duration-300
                 shadow-[0_0_15px_rgba(214,139,110,0.4)]
-                hover:scale-105">
+                hover:scale-105"
+          >
             <svg
               aria-label="Google logo"
               width="16"
@@ -129,7 +145,12 @@ const LoginPage = () => {
             </svg>
             Login with Google
           </button>
-          <p className="">Don’t have an account yet? <Link href="/register" className="text-red-500">Sign Up now.</Link></p>
+          <p className="">
+            Don’t have an account yet?{" "}
+            <Link href="/register" className="text-red-500">
+              Sign Up now.
+            </Link>
+          </p>
         </div>
       </Form>
     </div>

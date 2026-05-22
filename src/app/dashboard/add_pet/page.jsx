@@ -93,21 +93,21 @@ const AddPet = () => {
         </TextField>
 
         {/* Image URL */}
-        <TextField isRequired name="image" type="text">
+        <TextField isRequired name="imageUrl" type="text">
           <Label>Image URL</Label>
           <Input placeholder="https://example.com/pet.jpg" />
           <FieldError />
         </TextField>
 
         {/* Health Status */}
-        <TextField isRequired name="health" type="text">
+        <TextField isRequired name="healthStatus" type="text">
           <Label>Health Status</Label>
           <Input placeholder="Healthy" />
           <FieldError />
         </TextField>
 
         {/* Vaccination */}
-        <TextField isRequired name="vaccination" type="text">
+        <TextField isRequired name="vaccinationStatus" type="text">
           <Label>Vaccination Status</Label>
           <Input placeholder="Vaccinated" />
           <FieldError />
@@ -121,7 +121,7 @@ const AddPet = () => {
         </TextField>
 
         {/* Adoption Fee */}
-        <TextField isRequired name="fee" type="number">
+        <TextField isRequired name="adoptionFee" type="number">
           <Label>Adoption Fee</Label>
           <Input placeholder="500" />
           <FieldError />

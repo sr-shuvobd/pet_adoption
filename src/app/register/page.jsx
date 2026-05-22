@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -9,14 +10,33 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Register = () => {
+
+  const router = useRouter();
   const onSubmit = async(e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries())
 
-    console.log(data)
+    const {name, image,email,password} = data;
+    const {data: res, error} = await authClient.signUp.email({
+      email: email,
+      password: password,
+      name: name,
+      image: image,
+      callbackURL: "/login"
+    })
+    
+    if(res){
+      toast.success("Your account has been created successfully.");
+      router.push("/login")
+    }
+    if(error){
+      toast.error(error.message)
+    }
   };
 
   return (
@@ -33,7 +53,7 @@ const Register = () => {
           <Input placeholder="Enter Yout Name" />
           <FieldError />
         </TextField>
-        <TextField isRequired name="Image" type="text">
+        <TextField isRequired name="image" type="text">
           <Label>Image URL</Label>
           <Input placeholder="Enter your Image URL" />
           <FieldError />
