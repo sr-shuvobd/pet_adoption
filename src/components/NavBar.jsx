@@ -32,10 +32,10 @@ const NavBar = () => {
     </>
   );
 
-  const { data: session } = authClient.useSession();
-  const user = session?.user;
-
   const [open, setOpen] = useState(false);
+
+  const { data: session} = authClient.useSession();
+  const user = session?.user;
 
   const handleLogout = async() =>  {
       await authClient.signOut();

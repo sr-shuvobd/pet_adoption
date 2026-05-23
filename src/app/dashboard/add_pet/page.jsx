@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -10,29 +11,41 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "react-toastify";
 
 const AddPet = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
-  const onSubmit = async(e) => {
+  const router = useRouter();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
     const data = Object.fromEntries(formData.entries());
 
-   await fetch('http://localhost:5000/allpet', {
-        method: 'POST',
-        headers: {
-            "content-type" : "application/json"
-        },
-        body: JSON.stringify(data)
-    })
+    const petData = {
+      ...data,
+      userId: user.id,
+      userEmail: user.email,
+    };
+
+    await fetch("http://localhost:5000/allpet", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(petData),
+    });
+    toast.success("Pet added successfully!");
+    router.push("/dashboard/my_listings");
   };
 
   return (
     <div className="flex items-center justify-center py-10">
-
       <Form
         className="
           w-full max-w-3xl
@@ -45,12 +58,9 @@ const AddPet = () => {
         "
         onSubmit={onSubmit}
       >
-
         {/* Title */}
         <div className="md:col-span-2 text-center mb-4">
-          <h1 className="text-4xl font-bold text-[#D68B6E]">
-            Add New Pet
-          </h1>
+          <h1 className="text-4xl font-bold text-[#D68B6E]">Add New Pet</h1>
 
           <p className="text-gray-500 mt-2">
             Fill in the pet information below
@@ -159,7 +169,6 @@ const AddPet = () => {
             Add Pet
           </Button>
         </div>
-
       </Form>
     </div>
   );
