@@ -2,6 +2,7 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { FaEye } from "react-icons/fa";
 
 const HomeCard = async () => {
   const res = await fetch("http://localhost:5000/allpet");
@@ -71,7 +72,7 @@ const HomeCard = async () => {
                       text-white
                       hover:bg-[#0b6b50]
                     "
-                  >
+                  > <FaEye />
                     View Details
                   </Button>
                 </Link>

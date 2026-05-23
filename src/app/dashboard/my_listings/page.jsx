@@ -1,9 +1,13 @@
+import { DeletePet } from "@/components/DeletePet";
 import { auth } from "@/lib/auth";
-import { Button } from "@heroui/react";
+
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { FaEdit, FaEye } from "react-icons/fa";
+import { IoGitPullRequestSharp } from "react-icons/io5";
+import { MdDelete } from "react-icons/md";
 
 const MyListings = async () => {
   const session = await auth.api.getSession({
@@ -70,35 +74,12 @@ const MyListings = async () => {
                 </p>
               </div>
 
-              <div className="flex gap-3 mt-5">
-                <Link href={`/details/${_id}`} className="flex-1">
-                  <Button
-                    className="
-                      w-full
-                      bg-[#064E3B]
-                      text-white
-                      hover:bg-[#0b6b50]
-                    "
-                  >
-                    View Details
-                  </Button>
-                </Link>
-
-                <Link href="/" className="flex-1">
-                  <Button
-                    className="
-                      w-full
-                      border-2
-                      border-[#D68B6E]
-                      text-[#D68B6E]
-                      bg-transparent
-                      hover:bg-[#D68B6E]
-                      hover:text-white
-                    "
-                  >
-                    Adopt
-                  </Button>
-                </Link>
+              <div className="grid grid-cols-2 gap-3 mt-5">
+                <Link className="btn btn-outline text-[#D68B6E] " href={`/details/${_id}`}><FaEye />View</Link>
+                <Link className="btn btn-outline text-[#D68B6E]" href={`/dashboard/edit/${_id}`}><FaEdit />Edit</Link>
+                <button className="btn btn-outline text-[#D68B6E]"><IoGitPullRequestSharp/>Requests</button>
+                {/* <button className="btn text-2xl btn-outline text-red-500"><MdDelete /></button> */}
+                <DeletePet id={_id} petName={petName}/>
               </div>
             </div>
           </div>
