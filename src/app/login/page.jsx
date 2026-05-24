@@ -46,7 +46,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="container mx-auto bg-[#FFF1EB] flex flex-col justify-center items-center h-screen">
+    <div className="bg-[#FFF1EB] flex flex-col justify-center items-center h-screen">
       <div className=" flex  flex-col  bg-gray-100 p-5 rounded-2xl gap-4 text-center">
       <Form
         className="space-y-2"

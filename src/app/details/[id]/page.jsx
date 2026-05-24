@@ -8,7 +8,7 @@ const DetailsPage = async({params}) => {
     const pet = await res.json();
     const { _id, imageUrl, petName, species, age, adoptionFee,healthStatus,vaccinationStatus,location,description, breed,gender} = pet;
     return (
-        <div className="container mx-auto py-14 px-5">
+        <div className="py-14 px-5">
 
   <div
     className="

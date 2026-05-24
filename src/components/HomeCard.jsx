@@ -11,7 +11,7 @@ const HomeCard = async () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-7">
-      {pets.slice(0,6).map((pet) => {
+      {pets.slice(0, 6).map((pet) => {
         const { _id, imageUrl, petName, species, age, adoptionFee } = pet;
 
         return (
@@ -72,7 +72,9 @@ const HomeCard = async () => {
                       text-white
                       hover:bg-[#0b6b50]
                     "
-                  > <FaEye />
+                  >
+                    {" "}
+                    <FaEye />
                     View Details
                   </Button>
                 </Link>

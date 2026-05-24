@@ -3,6 +3,7 @@
 import {AlertDialog, Button} from "@heroui/react";
 import { refresh } from "next/cache";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 
 export function DeletePet({id,petName}) {
    
@@ -10,6 +11,7 @@ export function DeletePet({id,petName}) {
     await fetch(`http://localhost:5000/allpet/${id}`, {
     method: "DELETE",
   });
+  toast.success("Delete Successfuly")
   window.location.reload();
   }
 

@@ -51,7 +51,7 @@ const Register = () => {
   }
 
   return (
-    <div className="container mx-auto bg-[#FFF1EB] flex flex-col justify-center items-center h-screen ">
+    <div className="bg-[#FFF1EB] flex flex-col justify-center items-center h-screen ">
       <div className="bg-gray-100 p-5 flex flex-col gap-4 rounded-2xl">
         
         <Form className="space-y-3" onSubmit={onSubmit}>

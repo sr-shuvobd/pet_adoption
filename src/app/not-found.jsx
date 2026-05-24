@@ -14,8 +14,6 @@ const ErrorPage = () => {
         justify-center
         bg-[#064E3B]
         px-5
-        container
-        mx-auto
       "
     >
 

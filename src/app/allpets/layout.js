@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="container mx-auto p-7 bg-[#FFF1EB]">
+    <div className="p-7 bg-[#FFF1EB]">
 
       {/* Search & Filter Section */}
       <div

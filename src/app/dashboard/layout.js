@@ -7,7 +7,7 @@ import { FaClipboardList, FaHome, FaPaw, FaPlus } from "react-icons/fa";
 const DashboardLayout = ({ children }) => {
   const pathname = usePathname();
   return (
-    <div className="container mx-auto min-h-screen md:flex bg-gray-100">
+    <div className="min-h-screen md:flex bg-gray-100">
       <div className=" md:w-64 bg-[#064E3B] text-white p-5">
         <div className="flex items-center gap-2 mb-10">
           <FaPaw className="text-3xl text-[#F5DCD1]" />

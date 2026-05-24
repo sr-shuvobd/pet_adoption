@@ -1,4 +1,5 @@
 import { DeletePet } from "@/components/DeletePet";
+import Empty from "@/components/Empty";
 import { auth } from "@/lib/auth";
 
 import { headers } from "next/headers";
@@ -7,7 +8,7 @@ import Link from "next/link";
 import React from "react";
 import { FaEdit, FaEye } from "react-icons/fa";
 import { IoGitPullRequestSharp } from "react-icons/io5";
-import { MdDelete } from "react-icons/md";
+
 
 const MyListings = async () => {
   const session = await auth.api.getSession({
@@ -20,8 +21,9 @@ const MyListings = async () => {
 
   return (
     <div>
-        <h1 className="text-3xl text-[#D68B6E]">My Listings Pet</h1>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-7">
+        <h1 className="text-3xl text-[#D68B6E] m-5">My Listings Pet</h1>
+        {
+        pets.length === 0? (<Empty/>):(<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-7">
       {pets.map((pet) => {
         const { _id, imageUrl, petName, species, age, adoptionFee } = pet;
 
@@ -85,7 +87,9 @@ const MyListings = async () => {
           </div>
         );
       })}
-    </div>
+    </div>)
+      }
+    
     </div>
   );
 };
