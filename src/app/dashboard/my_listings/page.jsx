@@ -1,6 +1,5 @@
 import { DeletePet } from "@/components/DeletePet";
 import Empty from "@/components/Empty";
-import FatchRequest from "@/components/FatchRequest";
 import Requset from "@/components/Requset";
 
 import { auth } from "@/lib/auth";
@@ -15,14 +14,28 @@ const MyListings = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   const user = session?.user;
 
-  const res = await fetch(`http://localhost:5000/allpet/user/${user.id}`);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const res = await fetch(`http://localhost:5000/allpet/user/${user.id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
   const pets = await res.json();
 
   const fetchData = await fetch(`http://localhost:5000/adoptpet`);
+
   const data = await fetchData.json();
-  const myRequests = data.filter((item) => item.userId === user.id);
+
+  const myPetIds = pets.map((pet) => pet._id.toString());
+
+  const myRequests = data.filter((item) => myPetIds.includes(item.id));
 
   const pendingPets = myRequests.filter((pet) => pet.status === "pending");
 
@@ -33,12 +46,13 @@ const MyListings = async () => {
   return (
     <div>
       <h1 className="text-3xl text-[#D68B6E] m-5">My Listings Pet</h1>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <div className="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-[#D68B6E]">
           <h1 className="text-gray-500 text-lg font-medium">Total Requests</h1>
 
           <p className="text-4xl font-bold text-[#064E3B] mt-3">
-            {pets.length}
+            {myRequests.length}
           </p>
         </div>
 
@@ -66,6 +80,7 @@ const MyListings = async () => {
           </p>
         </div>
       </div>
+
       {pets.length === 0 ? (
         <Empty />
       ) : (
@@ -77,15 +92,16 @@ const MyListings = async () => {
               <div
                 key={_id}
                 className="
-              bg-white
-              rounded-2xl
-              overflow-hidden
-              shadow-md
-              hover:shadow-2xl
-              transition-all duration-300
-              hover:-translate-y-2
-              group
-            "
+                      bg-white
+                      rounded-2xl
+                      overflow-hidden
+                      shadow-md
+                      hover:shadow-2xl
+                      transition-all
+                      duration-300
+                      hover:-translate-y-2
+                      group
+                    "
               >
                 <div className="overflow-hidden">
                   <Image
@@ -94,14 +110,16 @@ const MyListings = async () => {
                     width={500}
                     height={500}
                     className="
-                  w-full
-                  h-64
-                  object-cover
-                  group-hover:scale-110
-                  transition-all duration-500
-                "
+                          w-full
+                          h-64
+                          object-cover
+                          group-hover:scale-110
+                          transition-all
+                          duration-500
+                        "
                   />
                 </div>
+
                 <div className="p-5">
                   <h1 className="text-2xl font-bold text-[#064E3B] mb-2">
                     {petName}
@@ -124,12 +142,13 @@ const MyListings = async () => {
 
                   <div className="grid grid-cols-2 gap-3 mt-5">
                     <Link
-                      className="btn btn-outline text-[#D68B6E] "
+                      className="btn btn-outline text-[#D68B6E]"
                       href={`/details/${_id}`}
                     >
                       <FaEye />
                       View
                     </Link>
+
                     <Link
                       className="btn btn-outline text-[#D68B6E]"
                       href={`/dashboard/edit/${_id}`}
@@ -139,6 +158,7 @@ const MyListings = async () => {
                     </Link>
 
                     <Requset id={_id} />
+
                     <DeletePet id={_id} petName={petName} />
                   </div>
                 </div>

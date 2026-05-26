@@ -3,16 +3,17 @@ import Empty from "@/components/Empty";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
-
 import React from "react";
 
 const Deshboard = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   const user = session?.user;
 
   const res = await fetch(`http://localhost:5000/adoptpet/user/${user.id}`);
+
   const pets = await res.json();
 
   const pendingPets = pets.filter((pet) => pet.status === "pending");
@@ -26,6 +27,7 @@ const Deshboard = async () => {
       <h1 className="text-3xl font-bold m-5 text-[#D68B6E]">
         Adoption Requests
       </h1>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <div className="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-[#D68B6E]">
           <h1 className="text-gray-500 text-lg font-medium">Total Requests</h1>
@@ -50,17 +52,20 @@ const Deshboard = async () => {
             {confirmPets.length}
           </p>
         </div>
+
         <div className="bg-white shadow-lg rounded-2xl p-6 border-l-4 border-red-500">
           <h1 className="text-gray-500 text-lg font-medium">Cancel</h1>
+
           <p className="text-4xl font-bold text-red-500 mt-3">
             {cancelPets.length}
           </p>
         </div>
       </div>
+
       {pets.length === 0 ? (
         <Empty />
       ) : (
-        <table className="w-full ">
+        <table className="w-full">
           <thead>
             <tr className="bg-[#064E3B] text-white">
               <th className="p-4 text-left">Pet Name</th>
@@ -87,7 +92,7 @@ const Deshboard = async () => {
                 <td className="p-4 capitalize">{pet.status}</td>
 
                 <td className="p-4">
-                  {pet.status == "pending" ? (
+                  {pet.status === "pending" ? (
                     <Cancle id={pet._id} />
                   ) : (
                     <Link

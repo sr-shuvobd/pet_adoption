@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Rocket } from "@gravity-ui/icons";
 import { Button, Modal } from "@heroui/react";
 import { useEffect, useState } from "react";
@@ -9,9 +10,10 @@ import { toast } from "react-toastify";
 const Requset = ({ id }) => {
   const [pets, setPets] = useState([]);
 
-  // FETCH REQUEST DATA
+  
   useEffect(() => {
     const fetchData = async () => {
+
       const res = await fetch(`http://localhost:5000/adoptpet/request/${id}`);
 
       const data = await res.json();
