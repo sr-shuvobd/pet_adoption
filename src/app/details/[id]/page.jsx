@@ -1,4 +1,6 @@
 import AdoptForm from "@/components/AdoptForm";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
@@ -9,7 +11,17 @@ import { TbVaccine } from "react-icons/tb";
 const DetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:5000/allpet/${id}`);
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+
+  console.log(token)
+
+  const res = await fetch(`http://localhost:5000/allpet/${id}`,{
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
   const pet = await res.json();
   const {
     _id,
