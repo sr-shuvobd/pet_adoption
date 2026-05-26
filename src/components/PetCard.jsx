@@ -6,6 +6,7 @@ import React from "react";
 import { FaEye } from "react-icons/fa";
 
 const PetCard = async () => {
+
   const res = await fetch("http://localhost:5000/allpet");
 
   const pets = await res.json();
@@ -107,7 +108,7 @@ const PetCard = async () => {
               <div className="flex gap-3 mt-5">
                 <Link
                   href={`/details/${_id}`}
-                  className="
+                  className={`
                       btn
                       rounded-full
                       flex-1
@@ -115,7 +116,12 @@ const PetCard = async () => {
                       bg-[#064E3B]
                       text-white
                       hover:bg-[#0b6b50]
-                    "
+                      ${
+                        isOwner || isConfirmed
+                          ? "pointer-events-none opacity-50"
+                          : ""
+                      }
+                  `}
                 >
                   <FaEye />
                   View Details

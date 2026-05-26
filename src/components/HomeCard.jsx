@@ -109,7 +109,7 @@ const HomeCard = async () => {
               <div className="flex gap-3 mt-5">
                 <Link
                   href={`/details/${_id}`}
-                  className="
+                  className={`
                       btn
                       rounded-full
                       flex-1
@@ -117,7 +117,12 @@ const HomeCard = async () => {
                       bg-[#064E3B]
                       text-white
                       hover:bg-[#0b6b50]
-                    "
+                      ${
+                        isOwner || isConfirmed
+                          ? "pointer-events-none opacity-50"
+                          : ""
+                      }
+                    `}
                 >
                   <FaEye />
                   View Details
