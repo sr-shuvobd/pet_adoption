@@ -16,17 +16,8 @@ import React from "react";
 const AdoptForm = ({ pet }) => {
   const {
     _id,
-    imageUrl,
     petName,
     species,
-    age,
-    adoptionFee,
-    healthStatus,
-    vaccinationStatus,
-    location,
-    description,
-    breed,
-    gender,
   } = pet;
 
   const { data: session } = authClient.useSession();
@@ -41,7 +32,8 @@ const AdoptForm = ({ pet }) => {
       ...data,
       userId: user.id,
       id: _id,
-      status: "pending"
+      status: "pending",
+      request:new Date().toLocaleDateString(),
     }
     console.log(data)
 

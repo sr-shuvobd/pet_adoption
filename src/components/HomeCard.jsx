@@ -28,7 +28,7 @@ const HomeCard = async () => {
               group
             "
           >
-            <div className="overflow-hidden">
+            <div className="overflow-hidden relative">
               <Image
                 src={imageUrl || "/assets/heroimage.png"}
                 alt={petName}
@@ -42,6 +42,22 @@ const HomeCard = async () => {
                   transition-all duration-500
                 "
               />
+              <h1
+                className="absolute
+                            top-4
+                            right-4
+                            bg-black/40
+                            backdrop-blur-sm
+                            text-green-500
+                            px-4
+                            py-2
+                            rounded-full
+                            text-sm
+                            font-semibold
+                            border border-white/20"
+                >
+                Available
+              </h1>
             </div>
             <div className="p-5">
               <h1 className="text-2xl font-bold text-[#064E3B] mb-2">
@@ -64,35 +80,29 @@ const HomeCard = async () => {
               </div>
 
               <div className="flex gap-3 mt-5">
-                <Link href={`/details/${_id}`} className="flex-1">
-                  <Button
-                    className="
-                      w-full
+                <Link
+                  href={`/details/${_id}`}
+                  className="btn rounded-full flex-1 w-full
                       bg-[#064E3B]
                       text-white
-                      hover:bg-[#0b6b50]
-                    "
-                  >
-                    {" "}
-                    <FaEye />
-                    View Details
-                  </Button>
+                      hover:bg-[#0b6b50]"
+                >
+                  {" "}
+                  <FaEye />
+                  View Details
                 </Link>
 
-                <Link href="/" className="flex-1">
-                  <Button
-                    className="
-                      w-full
+                <Link
+                  href={`/adoptform/${_id}`}
+                  className="flex-1 w-full btn rounded-full
                       border-2
                       border-[#D68B6E]
                       text-[#D68B6E]
                       bg-transparent
                       hover:bg-[#D68B6E]
-                      hover:text-white
-                    "
-                  >
-                    Adopt
-                  </Button>
+                      hover:text-white"
+                >
+                  Adopt
                 </Link>
               </div>
             </div>

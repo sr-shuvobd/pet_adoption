@@ -1,5 +1,8 @@
 import { DeletePet } from "@/components/DeletePet";
 import Empty from "@/components/Empty";
+import FatchRequest from "@/components/FatchRequest";
+import Requset from "@/components/Requset";
+
 import { auth } from "@/lib/auth";
 
 import { headers } from "next/headers";
@@ -7,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaEdit, FaEye } from "react-icons/fa";
-import { IoGitPullRequestSharp } from "react-icons/io5";
+
 
 
 const MyListings = async () => {
@@ -18,7 +21,7 @@ const MyListings = async () => {
 
   const res = await fetch(`http://localhost:5000/allpet/user/${user.id}`);
   const pets = await res.json();
-
+  
   return (
     <div>
         <h1 className="text-3xl text-[#D68B6E] m-5">My Listings Pet</h1>
@@ -79,8 +82,8 @@ const MyListings = async () => {
               <div className="grid grid-cols-2 gap-3 mt-5">
                 <Link className="btn btn-outline text-[#D68B6E] " href={`/details/${_id}`}><FaEye />View</Link>
                 <Link className="btn btn-outline text-[#D68B6E]" href={`/dashboard/edit/${_id}`}><FaEdit />Edit</Link>
-                <button className="btn btn-outline text-[#D68B6E]"><IoGitPullRequestSharp/>Requests</button>
-                {/* <button className="btn text-2xl btn-outline text-red-500"><MdDelete /></button> */}
+                
+                <Requset id={_id}/>
                 <DeletePet id={_id} petName={petName}/>
               </div>
             </div>
