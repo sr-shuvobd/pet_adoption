@@ -37,6 +37,7 @@ const Requset = ({ id }) => {
     });
 
     toast.success("Request Confirm Successfully!");
+    window.location.reload();
   };
 
   // CANCEL REQUEST
@@ -54,6 +55,7 @@ const Requset = ({ id }) => {
     });
 
     toast.success("Request Cancel Successfully!");
+    window.location.reload();
   };
 
   return (
