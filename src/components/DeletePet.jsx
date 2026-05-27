@@ -1,7 +1,6 @@
 "use client";
 
 import {AlertDialog, Button} from "@heroui/react";
-import { refresh } from "next/cache";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 
@@ -17,7 +16,7 @@ export function DeletePet({id,petName}) {
 
   return (
     <AlertDialog>
-      <Button variant="danger" className="btn text-2xl btn-outline text-red-500"><MdDelete /></Button>
+      <Button variant="danger" className="btn text-2xl btn-outline text-red-500 w-full justify-center"><MdDelete /></Button>
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[400px]">

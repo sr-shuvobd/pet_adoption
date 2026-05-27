@@ -105,7 +105,7 @@ const MyListings = async () => {
               >
                 <div className="overflow-hidden">
                   <Image
-                    src={imageUrl || "/assets/heroimage.png"}
+                    src={(imageUrl && (imageUrl.startsWith("http://") || imageUrl.startsWith("https://") || imageUrl.startsWith("/"))) ? imageUrl : "/assets/heroimage.png"}
                     alt={petName}
                     width={500}
                     height={500}
@@ -141,25 +141,33 @@ const MyListings = async () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 mt-5">
-                    <Link
-                      className="btn btn-outline text-[#D68B6E]"
-                      href={`/details/${_id}`}
-                    >
-                      <FaEye />
-                      View
-                    </Link>
+                    <div>
+                      <Link
+                        className="btn btn-outline text-[#D68B6E] w-full justify-center"
+                        href={`/details/${_id}`}
+                      >
+                        <FaEye />
+                        View
+                      </Link>
+                    </div>
 
-                    <Link
-                      className="btn btn-outline text-[#D68B6E]"
-                      href={`/dashboard/edit/${_id}`}
-                    >
-                      <FaEdit />
-                      Edit
-                    </Link>
+                    <div>
+                      <Link
+                        className="btn btn-outline text-[#D68B6E] w-full justify-center"
+                        href={`/dashboard/edit/${_id}`}
+                      >
+                        <FaEdit />
+                        Edit
+                      </Link>
+                    </div>
 
-                    <Requset id={_id} />
+                    <div className="w-full">
+                      <Requset id={_id} />
+                    </div>
 
-                    <DeletePet id={_id} petName={petName} />
+                    <div className="w-full">
+                      <DeletePet id={_id} petName={petName} />
+                    </div>
                   </div>
                 </div>
               </div>

@@ -24,7 +24,8 @@ const DashboardLayout = ({ children }) => {
                 transition-all duration-300 
                 ${
                   pathname === "/dashboard"
-                    && "bg-[#D68B6E] text-white p-2 rounded hover:text-black"
+                    ? "bg-[#D68B6E] text-white p-2 rounded hover:text-black"
+                    : ""
                 }
               `}
             >
@@ -42,7 +43,8 @@ const DashboardLayout = ({ children }) => {
                 transition-all duration-300
                 ${
                   pathname === "/dashboard/add_pet"
-                    && "bg-[#D68B6E] text-white p-2 rounded hover:text-black"
+                    ? "bg-[#D68B6E] text-white p-2 rounded hover:text-black"
+                    : ""
                 }
               `}
             >
@@ -60,7 +62,8 @@ const DashboardLayout = ({ children }) => {
                 transition-all duration-300
                 ${
                   pathname === "/dashboard/my_listings"
-                    && "bg-[#D68B6E] text-white p-2 rounded hover:text-black"
+                    ? "bg-[#D68B6E] text-white p-2 rounded hover:text-black"
+                    : ""
                 }
               `}
             >

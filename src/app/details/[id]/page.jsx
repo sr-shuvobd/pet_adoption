@@ -43,7 +43,7 @@ const DetailsPage = async ({ params }) => {
         {/* Image Section */}
         <div className="relative group overflow-hidden rounded-2xl">
           <Image
-            src={imageUrl}
+            src={(imageUrl && (imageUrl.startsWith("http://") || imageUrl.startsWith("https://") || imageUrl.startsWith("/"))) ? imageUrl : "/assets/heroimage.png"}
             alt={petName}
             width={500}
             height={500}

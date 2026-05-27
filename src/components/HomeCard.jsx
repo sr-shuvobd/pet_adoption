@@ -47,7 +47,7 @@ const HomeCard = async () => {
           >
             <div className="overflow-hidden relative">
               <Image
-                src={imageUrl || "/assets/heroimage.png"}
+                src={(imageUrl && (imageUrl.startsWith("http://") || imageUrl.startsWith("https://") || imageUrl.startsWith("/"))) ? imageUrl : "/assets/heroimage.png"}
                 alt={petName}
                 width={500}
                 height={500}
