@@ -15,7 +15,7 @@ const Update = ({pet}) => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
     
-        await fetch(`http://localhost:5000/allpet/${_id}`, {
+        await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet/${_id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

@@ -14,7 +14,7 @@ const Requset = ({ id }) => {
   useEffect(() => {
     const fetchData = async () => {
 
-      const res = await fetch(`http://localhost:5000/adoptpet/request/${id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet/request/${id}`);
 
       const data = await res.json();
 
@@ -30,7 +30,7 @@ const Requset = ({ id }) => {
       status: "confirm",
     };
 
-    await fetch(`http://localhost:5000/adoptpet/request/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet/request/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -48,7 +48,7 @@ const Requset = ({ id }) => {
       status: "cancel",
     };
 
-    await fetch(`http://localhost:5000/adoptpet/request/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet/request/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

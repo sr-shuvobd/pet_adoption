@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 const Cancle = ({id}) => {
     const handleDelete = async() => {
-        await fetch(`http://localhost:5000/adoptpet/${id}`, {
+        await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet/${id}`, {
         method: "DELETE",
       });
       toast.success("Cancle Successfuly")

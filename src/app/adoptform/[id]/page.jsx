@@ -4,7 +4,7 @@ import React from 'react';
 const Adopt = async ({params}) => {
     const { id } = await params;
 
-  const res = await fetch(`http://localhost:5000/allpet/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet/${id}`);
   const pet = await res.json();
     return (
         <div className='h-screen flex justify-center items-center bg-[#FFF1EB]'>

@@ -24,7 +24,7 @@ const AdoptForm = ({ pet }) => {
 
   useEffect(() => {
     const fetchRequest = async () => {
-      const res = await fetch(`http://localhost:5000/adoptpet/user/${user.id}`);
+      const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet/user/${user.id}`);
 
       const data = await res.json();
 
@@ -53,7 +53,7 @@ const AdoptForm = ({ pet }) => {
       request: new Date().toLocaleDateString(),
     };
 
-    await fetch("http://localhost:5000/adoptpet", {
+    await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

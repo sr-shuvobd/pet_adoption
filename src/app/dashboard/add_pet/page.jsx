@@ -33,7 +33,7 @@ const AddPet = () => {
       userEmail: user.email,
     };
 
-    await fetch("http://localhost:5000/allpet", {
+    await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

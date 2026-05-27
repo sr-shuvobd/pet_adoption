@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const PetCard = async () => {
-  const res = await fetch("http://localhost:5000/allpet");
+  const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet`);
 
   const pets = await res.json();
 

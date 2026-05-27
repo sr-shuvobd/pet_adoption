@@ -21,7 +21,7 @@ const MyListings = async () => {
     headers: await headers(),
   });
 
-  const res = await fetch(`http://localhost:5000/allpet/user/${user.id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet/user/${user.id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -29,7 +29,7 @@ const MyListings = async () => {
 
   const pets = await res.json();
 
-  const fetchData = await fetch(`http://localhost:5000/adoptpet`);
+  const fetchData = await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet`);
 
   const data = await fetchData.json();
 

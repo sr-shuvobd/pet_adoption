@@ -6,10 +6,10 @@ import React from "react";
 import { FaEye } from "react-icons/fa";
 
 const HomeCard = async () => {
-  const res = await fetch("http://localhost:5000/allpet");
+  const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet`);
   const pets = await res.json();
 
-  const requestRes = await fetch("http://localhost:5000/adoptpet");
+  const requestRes = await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet`);
   const requests = await requestRes.json();
 
   const session = await auth.api.getSession({

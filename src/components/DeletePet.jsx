@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 export function DeletePet({id,petName}) {
    
     const handleDelete = async() => {
-    await fetch(`http://localhost:5000/allpet/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet/${id}`, {
     method: "DELETE",
   });
   toast.success("Delete Successfuly")

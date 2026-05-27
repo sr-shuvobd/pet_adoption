@@ -17,7 +17,7 @@ const DetailsPage = async ({ params }) => {
 
   console.log(token)
 
-  const res = await fetch(`http://localhost:5000/allpet/${id}`,{
+  const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/allpet/${id}`,{
     headers: {
       authorization: `Bearer ${token}`
     }

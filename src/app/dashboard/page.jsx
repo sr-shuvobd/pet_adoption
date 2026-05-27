@@ -12,7 +12,7 @@ const Deshboard = async () => {
 
   const user = session?.user;
 
-  const res = await fetch(`http://localhost:5000/adoptpet/user/${user.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLICK_URL}/adoptpet/user/${user.id}`);
 
   const pets = await res.json();
 
